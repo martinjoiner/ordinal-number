@@ -35,11 +35,13 @@ class Ordinal{
 			$strReturn .= $this->steppedOrd( $num, 100, "hundredth", "hundred" );
 		}
 
-		if( $num > 100 && $appendAnd ){
-			$strReturn .= ' and ';
-		}
 
 		if( $this->right($strNum,2) != "00" ){
+
+			// Does the user want the "and" appended before the words that represent the last 2 digits?
+			if( $num > 100 && $appendAnd ){
+				$strReturn .= ' and ';
+			}
 
 			if( $this->right($strNum,2) % 10 == 0){
 				$pointer = $this->right($strNum,2) / 10;

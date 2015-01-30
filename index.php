@@ -56,9 +56,24 @@ $pageTitle = 'Demonstration of Ordinal PHP Class';
 				<td><?=$objOrdinal->convert(378)?></td>
 			</tr>
 			<tr>
+				<td>Just convert 40</td>
+				<td class="code">print $objOrdinal-&gt;convert(40);</td>
+				<td><?=$objOrdinal->convert(40)?></td>
+			</tr>
+			<tr>
 				<td>Just convert 400</td>
 				<td class="code">print $objOrdinal-&gt;convert(400);</td>
 				<td><?=$objOrdinal->convert(400)?></td>
+			</tr>
+			<tr>
+				<td>Just convert 4000</td>
+				<td class="code">print $objOrdinal-&gt;convert(4000);</td>
+				<td><?=$objOrdinal->convert(4000)?></td>
+			</tr>
+			<tr>
+				<td>Just convert 4000 with the &quot;and&quot; added</td>
+				<td class="code">print $objOrdinal-&gt;convert(4000,true);</td>
+				<td><?=$objOrdinal->convert(4000,true)?></td>
 			</tr>
 			<tr>
 				<td>Convert 872 in title case</td>
