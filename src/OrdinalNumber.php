@@ -1,23 +1,38 @@
 <?php
 
-/** 
- Takes a number in the range 1-9999 and converts it to a human readable sentence of it's ordinal form eg. 'Three thousand five hundred sixty first'
-*/
-class Ordinal{
+namespace \MartinJoiner\OrdinalNumber;
 
-	var $numWords = array( "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" );
-	var $titleCase = false;
+/** 
+ * Takes a number in the range 1-9999 and converts it to a human readable sentence of it's ordinal form eg. 'Three thousand five hundred sixty first'
+ */
+class OrdinalNumber{
+
+	protected $numWords = array( "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" );
+
+	protected $appendAnd = false;
+
+
+
+	/**
+	 * Constructor
+	 *
+	 * @param {boolean} $appendAnd Default: false - Places an 'and' before the final 2 parts if number above 101 or higher (eg. One hundred and first)
+	 */
+	public function __construct( $appendAnd = false ){
+		$this->appendAnd = $appendAnd;
+	}
+
 
 
 	/** 
-	 Converts a number to a sentence
-	 @$num An integer to be converted
-	 @$appendAnd - Boolean - Default: false - Places an 'and' before the final 2 parts if number above 101 or higher (eg. One hundred and first)
-	 @$titleCase - Boolean - Default: false - Capitalises the first letter
-	*/
-	public function convert( $num, $appendAnd = false, $titleCase = false ){
-
-		$titleCase;
+	 * Converts a number to a sentence
+	 *
+	 * @param {integer} $num An integer to be converted
+	 * @param {boolean} $titleCase - Boolean - Default: false - Capitalises the first letter
+	 *
+	 * @return {string}
+	 */
+	public function convert( $num, $titleCase = false ){
 
 		$strReturn = '';
 		$strNum = (string)$num;
@@ -39,7 +54,7 @@ class Ordinal{
 		if( $this->right($strNum,2) != "00" ){
 
 			// Does the user want the "and" appended before the words that represent the last 2 digits?
-			if( $num > 100 && $appendAnd ){
+			if( $num > 100 && $this->appendAnd ){
 				$strReturn .= ' and ';
 			}
 
@@ -65,13 +80,17 @@ class Ordinal{
 	}
 
 
+
 	/**
-	 This handles the part of the sentence such as "two hundred...", or "five thousandth"
-	 @num 			num  	The number we are converting
-	 @stepSize 		num 	The size of the group we are counting eg. 100 for hundreds
-	 @ordinalForm 	string 	The block in it's ordinal form eg. "thousandth"
-	 @wordForm		strign	The block in it's word form eg. "hundred"
-	*/
+	 * This handles the part of the sentence such as "two hundred...", or "five thousandth"
+	 *
+	 * @param {integer} $num The number we are converting
+	 * @param {integer} @stepSize The size of the group we are counting eg. 100 for hundreds
+	 * @param {string} @ordinalForm The block in it's ordinal form eg. "thousandth"
+	 * @param {string} @wordForm The block in it's word form eg. "hundred"
+	 *
+	 * @return {string} 
+	 */
 	private function steppedOrd( $num, $stepSize, $ordinalForm, $wordForm ){
 		$strNum = (string)$num;
 		$strStep = (string)$stepSize;
@@ -95,11 +114,15 @@ class Ordinal{
 
 
 
-
 	/**
-	 PHP doesn't have a nice right() function like CF so we need to build one to keep our code clean
-	*/
-	private function right( $str, $len ){
+	 * Return a certain number of characters from the right-side of a string
+	 *
+	 * @param {string} String to shorten
+	 * @param {integer} Number of characters to return
+	 *
+	 * @return {string}
+	 */
+	private function right( $str, $len = 1 ){
 		return substr($str, strlen($str)-$len);
 	}
 

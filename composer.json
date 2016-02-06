@@ -1,0 +1,26 @@
+{
+    "name": "martinjoiner/ordinalnumber",
+    "type": "library",
+    "description": "Converts numbers to a human readable ordinal form eg. 'first', 'second' or even 'Three thousand five hundred sixty first'",
+    "keywords": ["ordinal", "number", "english"],
+    "authors": [
+        {
+            "name": "Martin Joiner",
+            "email": "martin@martinjoiner.co.uk",
+            "homepage": "http://martinjoiner.co.uk",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+    	"php": ">=5.3.0",
+    },
+    "support": {
+        "source": "https://github.com/martinjoiner/ordinalnumber",
+        "issues": "https://github.com/martinjoiner/ordinalnumber/issues"
+    },
+    "autoload": {
+        "psr-4": {
+            "MartinJoiner\\OrdinalNumber\\": "src"
+        }
+    }
+}
