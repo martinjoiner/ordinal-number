@@ -3,25 +3,43 @@ Ordinal Number
 
 A PHP package for converting numbers to a human readable sentence of it's ordinal form eg. _'first'_, _'second'_ or even _'Three thousand five hundred and sixty first'_ 
 
-Supports numbers in the range 1-9999. 
+Latest release supports numbers in the range 1 - 9999. 
 
-## Usage
+## Installation
 
 Recomended installation via Composer: 
 
 ```
-	composer require martinjoiner/ordinal-number
+	composer require martinjoiner/ordinal-number @dev
 ```
 See library page on Packagist https://packagist.org/packages/martinjoiner/ordinal-number
 
-Use the OrdinalNumber class in your PHP code as follows: 
+
+## Usage example
 
 ```php
-	$ordinal = new OrdinalNumber( true );
-	// The following line will set the value or $ordinalForm to the string 'three hundred and seventy eighth'
-	$ordinalForm = $ordinal->convert( 378 );
+	// Tell our code to use the namespace
+	use MartinJoiner\OrdinalNumber\OrdinalNumber;
+	
+	// Define an instance of the OrdinalNumber class
+	$ordinal = new OrdinalNumber();
+
+	// The following line will output 'three hundred seventy eighth'
+	print $ordinal->convert( 378 );
+
+	// The following line will output 'three hundred and seventy eighth'
+	print $ordinal->convert( 378, true );
+
+	// The following line will output 'Three hundred and seventy eighth' (notice capitalised)
+	print $ordinal->convert( 378, true, true );
 ```
 
+
+## convert() method parameters
+
+### Required parameters
+
+* num {integer} A number to be converted (in the range of 1 - 9999)
 
 ### Optional parameters
 

@@ -7,20 +7,10 @@ namespace MartinJoiner\OrdinalNumber;
  */
 class OrdinalNumber{
 
-	protected $numWords = array( "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" );
-
-	protected $appendAnd = false;
-
-
-
 	/**
-	 * Constructor
-	 *
-	 * @param {boolean} $appendAnd Default: false - Places an 'and' before the final 2 parts if number above 101 or higher (eg. One hundred and first)
+	 * @var {array} The word equivilent of our first 9 numbers
 	 */
-	public function __construct( $appendAnd = false ){
-		$this->appendAnd = $appendAnd;
-	}
+	protected $numWords = array( "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" );
 
 
 
@@ -28,11 +18,12 @@ class OrdinalNumber{
 	 * Converts a number to a sentence
 	 *
 	 * @param {integer} $num An integer to be converted
+	 * @param {boolean} $appendAnd Default: false - Places an 'and' before the final 2 parts if number above 101 or higher (eg. One hundred and first)
 	 * @param {boolean} $titleCase - Boolean - Default: false - Capitalises the first letter
 	 *
 	 * @return {string}
 	 */
-	public function convert( $num, $titleCase = false ){
+	public function convert( $num, $appendAnd = false, $titleCase = false ){
 
 		$strReturn = '';
 		$strNum = (string)$num;
@@ -54,7 +45,7 @@ class OrdinalNumber{
 		if( $this->right($strNum,2) != "00" ){
 
 			// Does the user want the "and" appended before the words that represent the last 2 digits?
-			if( $num > 100 && $this->appendAnd ){
+			if( $num > 100 && $appendAnd ){
 				$strReturn .= ' and ';
 			}
 
