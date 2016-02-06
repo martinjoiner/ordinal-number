@@ -3,6 +3,7 @@
     "type": "library",
     "description": "Converts numbers to a human readable ordinal form eg. 'first', 'second' or even 'Three thousand five hundred sixty first'",
     "keywords": ["ordinal", "number", "english"],
+    "license": "MIT",
     "authors": [
         {
             "name": "Martin Joiner",
