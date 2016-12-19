@@ -2,15 +2,24 @@
 
 namespace MartinJoiner\OrdinalNumber;
 
+use InvalidArgumentException;
+
 /** 
  * Takes a number in the range 1-9999 and converts it to a human readable sentence of it's ordinal form eg. 'Three thousand five hundred sixty first'
  */
 class OrdinalNumber{
 
 	/**
-	 * @var {array} The word equivilent of our first 9 numbers
+	 * The word equivilent of our first 9 numbers
+	 *
+	 * @param {number} 
+	 *
+	 * @return {string}
 	 */
-	protected $numWords = array( "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" );
+	public static function numWords( $pointer ){
+		$arr = array( "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" );
+		return $arr[ $pointer ];
+	} 
 
 
 
@@ -23,7 +32,19 @@ class OrdinalNumber{
 	 *
 	 * @return {string}
 	 */
-	public function convert( $num, $appendAnd = false, $titleCase = false ){
+	public static function convert( $num, $appendAnd = false, $titleCase = false ){
+		
+		if ( $num < 0 ){
+			throw new InvalidArgumentException('Number must be positive');
+		}		
+
+		if ( $num == 0 ){
+			throw new InvalidArgumentException('Number cannot be zero');
+		}
+
+		if ( $num > 9999 ){
+			throw new InvalidArgumentException('Number must be less than 10,000');
+		}
 
 		$strReturn = '';
 		$strNum = (string)$num;
@@ -34,31 +55,31 @@ class OrdinalNumber{
 		$decWords = array( "" , "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety" );
 
 		if( $num > 999 ){
-			$strReturn .= $this->steppedOrd( $num, 1000, "thousandth", "thousand" );
+			$strReturn .= self::steppedOrd( $num, 1000, "thousandth", "thousand" );
 		}
 
 		if( $num > 99 ){
-			$strReturn .= $this->steppedOrd( $num, 100, "hundredth", "hundred" );
+			$strReturn .= self::steppedOrd( $num, 100, "hundredth", "hundred" );
 		}
 
 
-		if( $this->right($strNum,2) != "00" ){
+		if( self::right($strNum,2) != "00" ){
 
 			// Does the user want the "and" appended before the words that represent the last 2 digits?
 			if( $num > 100 && $appendAnd ){
 				$strReturn .= ' and ';
 			}
 
-			if( $this->right($strNum,2) % 10 == 0){
-				$pointer = $this->right($strNum,2) / 10;
+			if( self::right($strNum,2) % 10 == 0){
+				$pointer = self::right($strNum,2) / 10;
 				$strReturn .= $decOrds[ $pointer - 1 ];
-			} else if( $this->right($num,2) < 20 ){
-				$pointer = $this->right($strNum,2);
+			} else if( self::right($num,2) < 20 ){
+				$pointer = self::right($strNum,2);
 				$strReturn .= $ordinalWords[ $pointer - 1 ];
 			} else {
-				$pointer = ( $this->right($num,2) - ( $this->right($num,2) % 10 ) ) / 10;
+				$pointer = ( self::right($num,2) - ( self::right($num,2) % 10 ) ) / 10;
 				$strReturn .= $decWords[ $pointer - 1 ];
-				$pointer = $this->right($num,1);
+				$pointer = self::right($num,1);
 				$strReturn .= ' ' . $ordinalWords[ $pointer - 1 ];
 			} 
 		}
@@ -73,7 +94,7 @@ class OrdinalNumber{
 
 
 	/**
-	 * This handles the part of the sentence such as "two hundred...", or "five thousandth"
+	 * This handles the part of the sentence such as "two hundred...", "ten thousand" or "five thousandth"
 	 *
 	 * @param {integer} $num The number we are converting
 	 * @param {integer} @stepSize The size of the group we are counting eg. 100 for hundreds
@@ -89,13 +110,13 @@ class OrdinalNumber{
 		$strReturn = '';
 		
 		$lenStrStep = strLen( $strStep );
-		if( substr( $this->right($strNum, $lenStrStep), 0, 1) != 0){
-			if( $this->right($strNum, $lenStrStep) % $stepSize == 0 ){
-				$pointer = $this->right($strNum, $lenStrStep) / $stepSize;
-				$strReturn .= $this->numWords[ $pointer - 1 ] . ' ' . $ordinalForm;
+		if( substr( self::right($strNum, $lenStrStep), 0, 1) != 0){
+			if( self::right($strNum, $lenStrStep) % $stepSize == 0 ){
+				$pointer = self::right($strNum, $lenStrStep) / $stepSize;
+				$strReturn .= self::numWords( $pointer - 1 ) . ' ' . $ordinalForm;
 			} else {
-				$pointer = ( $this->right($num, $lenStrStep) - ( $this->right($num, $lenStrStep) % $stepSize ) ) / $stepSize;
-				$strReturn .= $this->numWords[ $pointer - 1 ];
+				$pointer = ( self::right($num, $lenStrStep) - ( self::right($num, $lenStrStep) % $stepSize ) ) / $stepSize;
+				$strReturn .= self::numWords( $pointer - 1 );
 				$strReturn .= ' ' . $wordForm . ' ';
 				
 			}
@@ -113,7 +134,7 @@ class OrdinalNumber{
 	 *
 	 * @return {string}
 	 */
-	private function right( $str, $len = 1 ){
+	private static function right( $str, $len = 1 ){
 		return substr($str, strlen($str)-$len);
 	}
 

@@ -20,18 +20,15 @@ See library page on Packagist https://packagist.org/packages/martinjoiner/ordina
 ```php
 	// Tell our code to use the namespace
 	use MartinJoiner\OrdinalNumber\OrdinalNumber;
-	
-	// Define an instance of the OrdinalNumber class
-	$ordinal = new OrdinalNumber();
 
 	// The following line will output 'three hundred seventy eighth'
-	print $ordinal->convert( 378 );
+	print OrdinalNumber::convert( 378 );
 
 	// The following line will output 'three hundred and seventy eighth'
-	print $ordinal->convert( 378, true );
+	print OrdinalNumber::convert( 378, true );
 
 	// The following line will output 'Three hundred and seventy eighth' (notice capitalised)
-	print $ordinal->convert( 378, true, true );
+	print OrdinalNumber::convert( 378, true, true );
 ```
 
 
