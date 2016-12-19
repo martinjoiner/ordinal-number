@@ -10,7 +10,7 @@ Latest release supports numbers in the range 1 - 9999.
 Recomended installation via Composer: 
 
 ```
-	composer require martinjoiner/ordinal-number @dev
+	composer require martinjoiner/ordinal-number
 ```
 See library page on Packagist https://packagist.org/packages/martinjoiner/ordinal-number
 
