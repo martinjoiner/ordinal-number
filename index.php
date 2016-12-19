@@ -114,7 +114,7 @@ $pageTitle = 'Demonstration of Ordinal PHP Class';
 		</tbody>
 	</table>
 
-	<p><a href="https://github.com/martinjoiner/ordinal">https://github.com/martinjoiner/ordinal</a></p>
+	<p><a href="https://github.com/martinjoiner/ordinal-number">https://github.com/martinjoiner/ordinal</a></p>
 	<p><a href="https://packagist.org/packages/martinjoiner/ordinal-number">https://packagist.org/packages/martinjoiner/ordinal-number</a></p>
 	
 	<h2>List of examples in increments of 7</h2>
