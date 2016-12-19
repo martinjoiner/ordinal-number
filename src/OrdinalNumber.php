@@ -103,7 +103,7 @@ class OrdinalNumber{
 	 *
 	 * @return {string} 
 	 */
-	private function steppedOrd( $num, $stepSize, $ordinalForm, $wordForm ){
+	private static function steppedOrd( $num, $stepSize, $ordinalForm, $wordForm ){
 		$strNum = (string)$num;
 		$strStep = (string)$stepSize;
 
