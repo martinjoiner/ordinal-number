@@ -44,3 +44,12 @@ See library page on Packagist https://packagist.org/packages/martinjoiner/ordina
 * titleCase {boolean} - Default: _false_ - Capitalises the first letter
 
 To see some working examples simply run index.php 
+
+
+## Testing
+
+Tests are written in PHPUnit https://phpunit.de/  
+
+```
+    phpunit --bootstrap vendor/autoload.php tests/OrdinalNumberTest
+```

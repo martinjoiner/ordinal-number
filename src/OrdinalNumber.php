@@ -67,7 +67,7 @@ class OrdinalNumber{
 
 			// Does the user want the "and" appended before the words that represent the last 2 digits?
 			if( $num > 100 && $appendAnd ){
-				$strReturn .= ' and ';
+				$strReturn .= 'and ';
 			}
 
 			if( self::right($strNum,2) % 10 == 0){
