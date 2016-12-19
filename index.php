@@ -4,7 +4,7 @@ include( 'src/OrdinalNumber.php' );
 
 use MartinJoiner\OrdinalNumber\OrdinalNumber as OrdinalNumber;
 
-$pageTitle = 'Demonstration of Ordinal PHP Class';
+$pageTitle = 'Demonstration of OrdinalNumber PHP Class';
 
 ?><!DOCTYPE html>
 <html>
@@ -19,8 +19,8 @@ $pageTitle = 'Demonstration of Ordinal PHP Class';
 			border-collapse: collapse;
 		}
 		td, th{
-			padding: 0 1.4em;
-			line-height: 3em;
+			padding: 0 1.3em;
+			line-height: 2em;
 			border: 1px solid #CCC;
 		}
 		.code{
@@ -34,8 +34,10 @@ $pageTitle = 'Demonstration of Ordinal PHP Class';
 
 	<h1><?=$pageTitle?></h1>
 	<h2>By Martin Joiner</h2>
-
-	<p>function convert( $num, $appendAnd = false, $titleCase = false )</p>
+	
+	<code>
+		<p>function convert( $num, $appendAnd = false, $titleCase = false )</p>
+	</code>
 
 	<table>
 		<thead>
@@ -114,9 +116,13 @@ $pageTitle = 'Demonstration of Ordinal PHP Class';
 		</tbody>
 	</table>
 
-	<p><a href="https://github.com/martinjoiner/ordinal-number">https://github.com/martinjoiner/ordinal</a></p>
+
+	<h2>Sources</h2>
+
+	<p><a href="https://github.com/martinjoiner/ordinal-number">https://github.com/martinjoiner/ordinal-number</a></p>
 	<p><a href="https://packagist.org/packages/martinjoiner/ordinal-number">https://packagist.org/packages/martinjoiner/ordinal-number</a></p>
 	
+
 	<h2>List of examples in increments of 7</h2>
 
 	<ul>
